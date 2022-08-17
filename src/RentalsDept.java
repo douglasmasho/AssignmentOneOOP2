@@ -5,9 +5,9 @@ public class RentalsDept {
     private ArrayList<CustomerSlip> slips;
 
 
-    public RentalsDept(ArrayList<Vehicle> vehicles, ArrayList<CustomerSlip> slips) {
-        this.vehicles = vehicles;
-        this.slips = slips;
+    public RentalsDept() {
+        this.vehicles = new ArrayList<>();
+        this.slips = new ArrayList<>();
     }
 
     public void PrintAllVehicles(){
