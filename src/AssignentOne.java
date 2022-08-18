@@ -49,8 +49,10 @@ public class AssignmentOne {
             showMenu = menu(rentals);
         }
     }
-
-
+    public static boolean shouldContinue(Scanner scanner){
+        System.out.print("Do you want to continue? (T/F): ");
+        return (scanner.nextLine().toUpperCase().equals("T")) ? true : false;
+    }
     public static boolean menu(RentalsDept rentals) {
         System.out.println("Welcome to J+K Rentals And Freight Services. You are using our new rentals department app!");
         System.out.println("To start, please select an option from the list below:");
@@ -65,43 +67,46 @@ public class AssignmentOne {
         System.out.println("(9) See average kilometers travelled of our vehicles");
         System.out.println("q) quit the program");
 
+
+
         Scanner scanner = new Scanner(System.in);
         switch (scanner.nextLine()){
             case "1":
                 rentals.PrintAllVehicles();
-                return true;
+                return shouldContinue(scanner);
             case "2":
                 System.out.println("Please enter the vin number");
                 System.out.println(rentals.GetVehicle(scanner.nextLine()).getModel());
-                return true;
+                return shouldContinue(scanner);
             case "3":
                 System.out.println("Please enter the color you are looking for in lowercase e.g(blue)");
                 System.out.println(rentals.HowManySedansOfColor(scanner.nextLine()));
-                return true;
+                return shouldContinue(scanner);
             case "4":
                 System.out.println("Please enter the color you are looking for in lowercase e.g(blue)");
                 System.out.println(rentals.HowManyBakkiesOfColor(scanner.nextLine()));
-                return true;
+                return shouldContinue(scanner);
             case "5":
                 System.out.println("Please enter the year you are looking for eg(2005)");
                 System.out.println(rentals.HowManyBakkiesinYear(Integer.parseInt(scanner.nextLine())));
-                return true;
+                return shouldContinue(scanner);
             case "6":
                 System.out.println(rentals.GetBiggestBakkie());
-                return true;
+                return shouldContinue(scanner);
             case "7":
                     System.out.println(rentals.GetBiggestBoot());
-                    return true;
+                return shouldContinue(scanner);
             case "8":
                 System.out.println(roundOff(rentals.GetAverageHours(),2) + " hours");
-                return true;
+                return shouldContinue(scanner);
             case "9":
                 System.out.println(roundOff(rentals.GetAverageKilometers(), 2) + " Kilometers");
-                return true;
+                return shouldContinue(scanner);
             case "q":
-                    return false;
+                return false;
             default:
-                return true;
+                System.out.println("You pressed an unavailable option");
+                return shouldContinue(scanner);
         }
     }
 
@@ -110,4 +115,4 @@ public class AssignmentOne {
         return Math.round(value * scale) / scale;
     }
 
-} 
+}
