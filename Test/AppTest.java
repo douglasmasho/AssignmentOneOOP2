@@ -118,5 +118,42 @@ public class AppTest {
 
         assertEquals(biggestBakkie, "VW Amarok oijoiu76");
     }
+    
+     public static double roundOff(double value, int places) {
+        double scale = Math.pow(10, places);
+        return Math.round(value * scale) / scale;
+    }
+
+    @Test
+    public void GetAverageKilometersTest(){
+        RentalsDept rentalsDept = new RentalsDept();
+        CustomerSlip slip = new CustomerSlip("Benjamen Salomo", "kr234fep9", 20, 200,203);
+        CustomerSlip slip2 = new CustomerSlip("Douglas Mashonganyika", "kj24mmio45", 30, 300,204);
+        CustomerSlip slip3 = new CustomerSlip("Gabriel Ndimulunde", "kj24mkli38", 40, 350,205);
+
+        rentalsDept.AddSlip(slip);
+        rentalsDept.AddSlip(slip2);
+        rentalsDept.AddSlip(slip3);
+
+        //we added slips with the kilometers 200,300 and 350, so the average has to be 283.33 rounded to 2 d.p
+        double average = rentalsDept.GetAverageKilometers();
+
+        assert(283.33 ==  roundOff(average,2));
+    }
+    
+    @Test
+    public void GetAverageHoursTest(){
+        RentalsDept rentalsDept = new RentalsDept();
+        CustomerSlip slip = new CustomerSlip("Benjamen Salomo", "kr234fep9", 20, 200,203);
+        CustomerSlip slip2 = new CustomerSlip("Douglas Mashonganyika", "kj24mmio45", 30, 300,204);
+        CustomerSlip slip3 = new CustomerSlip("Gabriel Ndimulunde", "kj24mkli38", 40, 350,205);
+
+        rentalsDept.AddSlip(slip);
+        rentalsDept.AddSlip(slip2);
+        rentalsDept.AddSlip(slip3);
+
+        //we added slips with the hours 20,30 and 40, so the average has to be 30
+        assert(30 ==  rentalsDept.GetAverageHours());
+    }
 
 }
