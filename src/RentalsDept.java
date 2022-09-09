@@ -143,3 +143,29 @@ public class RentalsDept {
             pw.close();
         }
     }
+
+public List<String> ReadFromFile(String filename) throws Exception
+    {
+        File file;
+        Scanner scan;
+        List<String> lines;
+
+        try
+        {
+            lines = new ArrayList<>();
+            file = new File(filename);
+            scan = new Scanner(file);
+
+            while(scan.hasNext())
+            {
+                lines.add(scan.nextLine());
+            }
+            return lines;
+        }
+        catch(Exception e)
+        {
+            throw new IOException("The file does not exist");
+        }
+    }
+
+}
